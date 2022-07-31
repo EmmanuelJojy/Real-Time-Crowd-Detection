@@ -45,6 +45,7 @@ flags.DEFINE_boolean('count', False, 'count objects being tracked on screen')
 
 def main(_argv):
     print_allowed = False
+    color = [156.0, 158.0, 222.0]
     
     # Definition of the parameters
     max_cosine_distance = 0.4
@@ -111,7 +112,7 @@ def main(_argv):
         frame_num +=1
         mp_frame_data = f'Frame #: {frame_num}\n'
         if print_allowed:
-            print('Frame #: ', frame_num)
+            print('\nFrame #: ', frame_num)
         # frame_size = frame.shape[:2]
         image_data = cv2.resize(frame, (input_size, input_size))
         image_data = image_data / 255.
@@ -237,7 +238,7 @@ def main(_argv):
         fps = 1.0 / (time.time() - start_time)
         mp_frame_data += "FPS: %.2f\n" % fps
         if print_allowed:
-            print("FPS: %.2f\n" % fps)
+            print("FPS: %.2f" % fps)
             
         # FORCE PLUG DATA IN
         # @author: Emmanuel Jojy
@@ -245,12 +246,11 @@ def main(_argv):
         # Plug foreign code
         # mp_frame_data += 'EOF\n'
         mp_cv_data = analyze_file(mp_frame_data)
-        print(mp_cv_data)
+        print('Frame Data\n', mp_cv_data)
         
         for coordinate in mp_cv_data.values():
-            color = colors[int(track.track_id) % len(colors)]
-            color = [i * 255 for i in color]
-            print('COLOR', color)
+            #color = colors[int(track.track_id) % len(colors)]
+            #color = [i * 255 for i in color]
             cv2.rectangle(frame, (int(coordinate[0]), int(coordinate[1])), (int(coordinate[2]), int(coordinate[3])), color, 2)
             cv2.rectangle(frame, (int(coordinate[0]), int(coordinate[1]-30)), (int(coordinate[0])+(len(class_name)+len(str(track.track_id)))*17, int(coordinate[1])), color, -1)
             cv2.putText(frame, 'Potential Crowd Behaviour', (int(coordinate[0]), int(coordinate[1]-10)),0, 0.75, (255,255,255),2)
