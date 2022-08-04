@@ -25,7 +25,6 @@ def generate_group(frame_id, clusters):
         lm = left_most(tl_coordinates)
         rm = right_most(br_coordinates)
         cv_input[cluster_id] = [lm.x, lm.y, rm.x, rm.y]
-    print(cv_input)
     
     '''
     cv_input[frame_id] = {}

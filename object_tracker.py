@@ -246,7 +246,8 @@ def main(_argv):
         # Plug foreign code
         # mp_frame_data += 'EOF\n'
         mp_cv_data = analyze_file(mp_frame_data)
-        print('Frame Data\n', mp_cv_data)
+        print('Frame Data')
+        print(mp_cv_data)
         
         for coordinate in mp_cv_data.values():
             #color = colors[int(track.track_id) % len(colors)]
