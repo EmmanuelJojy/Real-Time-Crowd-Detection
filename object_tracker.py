@@ -254,7 +254,7 @@ def main(_argv):
             #color = [i * 255 for i in color]
             cv2.rectangle(frame, (int(coordinate[0]), int(coordinate[1])), (int(coordinate[2]), int(coordinate[3])), color, 2)
             cv2.rectangle(frame, (int(coordinate[0]), int(coordinate[1]-30)), (int(coordinate[0])+(len(class_name)+len(str(track.track_id)))*17, int(coordinate[1])), color, -1)
-            cv2.putText(frame, 'Potential Crowd Behaviour', (int(coordinate[0]), int(coordinate[1]-10)),0, 0.75, (255,255,255),2)
+            cv2.putText(frame, 'Crowd', (int(coordinate[0]), int(coordinate[1]-10)),0, 0.75, (255,255,255),2)
             
         result = np.asarray(frame)
         result = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
